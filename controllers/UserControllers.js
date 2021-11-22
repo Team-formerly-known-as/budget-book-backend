@@ -1,4 +1,5 @@
 const express = require('express')
+const { model } = require('mongoose')
 const router = express.Router()
 const User = require('../models/user')
 
@@ -9,8 +10,7 @@ router.post("/",(req,res) =>{
     .then(res.json({
         status:201,
         user:User
-    }))
-    
+    }))   
 })
 
 router.get('/', (req,res) =>{
@@ -23,7 +23,16 @@ router.get('/', (req,res) =>{
 
 router.delete("/:id", (req,res) =>{
     User.findByIdAndDelete(req.params.id)
-    .then(() => res.status(204))
-
-       
+    .then(() => res.status(204))    
 })
+
+router.put('/:id', (req, res) => {
+    User.findByIdAndUpdate((req.params.id), req.body, {new: true})
+    .then((user) => res.json({
+        status: 200,
+        user: user
+    }))
+})
+
+model.exports = router
+
