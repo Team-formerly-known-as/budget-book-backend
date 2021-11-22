@@ -1,8 +1,9 @@
 const mongoose = require('../db/connection')
+const Budget = require('./budget')
 
 const userSchema = new mongoose.Schema({
     userName:String,
-    budget: [budget]
+    budget: [Budget]
 })
 
 const User = mongoose.model("User",userSchema)
