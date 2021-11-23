@@ -4,7 +4,6 @@ const mongoose = require('../db/connection')
 
 
 const expenseSchema = mongoose.Schema({
-    income: Number,
     detail: String,
     amount: Number,
     dueDate: Date,
