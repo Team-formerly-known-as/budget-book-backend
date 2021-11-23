@@ -31,19 +31,27 @@ router.delete("/:id", (req,res) =>{
     .then(() => res.status(204))    
 })
 
-router.put('/:expenseId/:userId', (req, res) => {
-    Expense.findById(req.params.expenseId).then( expense => {
-        User.findByIdAndUpdate((req.params.userId), req.body, {new: true})
-        .then(user => {
-            user.expenses.push(expense._id)
-            expense.expenses.push(user._id)
 
-            user.save()
-            expense.save()
-            res.json(user)
+// router.post('/:new'),(req, res) => {
+//     User.create(req.body.user).then( user => {
+//         Expense.create(req.body.expense).then( expense => {
+//             console.log( req.body.user, req.body.expense)
+//             user.expenses.push(expense._id)
+//             expense.users.push(user._id) 
+//             res.json(user)
+//         })
+//     })
+// }
+
+router.put('/:expenseId/:userId', (req, res) => {
+    Expense.findById(req.params.expenseId).then( (expense) => {
+        User.findByIdAndUpdate((req.params.userId), {$push: {expenses: expense.id}}, {new: true})
+        .then((newUser) => { res.json(newUser)
         })
     })  
 })
+
+
 
 module.exports = router
 

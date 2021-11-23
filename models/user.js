@@ -4,7 +4,6 @@ const mongoose = require('../db/connection')
 
 const userSchema = new mongoose.Schema({
     userName: String,
-    income: Number,
     expenses: [{
         ref: "Expense",
         type: mongoose.Schema.Types.ObjectId
