@@ -4,14 +4,18 @@ const router = express.Router()
 const User = require('../models/user')
 
 
+
 router.post("/",(req,res) =>{
+    console.log(req.body)
     User.create(req.body)
     // might need fart arrow
-    .then(res.json({
+    .then(user => res.json({
         status:201,
-        user:User
+        user: user
     }))   
 })
+
+
 
 router.get('/', (req,res) =>{
     User.find()
@@ -34,5 +38,5 @@ router.put('/:id', (req, res) => {
     }))
 })
 
-model.exports = router
+module.exports = router
 

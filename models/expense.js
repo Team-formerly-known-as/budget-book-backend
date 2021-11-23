@@ -1,4 +1,8 @@
+const { Schema } = require('mongoose')
 const mongoose = require('../db/connection')
+
+
+
 
 const expenseSchema = new mongoose.Schema({
     detail: String,
