@@ -7,10 +7,10 @@ const app = express()
 const PORT = process.env.PORT
 
 const UserController = require('./controllers/UserControllers')
-const expenseSchema = require('./controllers/ExpenseController')
+const ExpenseController = require('./controllers/ExpenseController')
 
 const User = require ('./models/user')
-const ExpenseController = require('./models/expense')
+const Expense = require('./models/expense')
 
 app.use(cors())
 app.use(morgan('combined'))
@@ -23,7 +23,7 @@ app.get('/', function(req,res){
 })
 
 app.use('/user', UserController)
-// app.use('/expense', ExpenseController)
+app.use('/expense', ExpenseController)
 
 
 app.listen(PORT, () =>{

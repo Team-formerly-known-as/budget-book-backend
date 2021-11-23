@@ -3,7 +3,7 @@ const mongoose = require('../db/connection')
 
 
 const userSchema = new mongoose.Schema({
-    userName:String,
+    userName: String,
     income: Number,
     expenses: [{
         ref: "Expense",

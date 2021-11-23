@@ -1,4 +1,3 @@
-const { Schema } = require('mongoose')
 const mongoose = require('../db/connection')
 
 
@@ -7,7 +6,11 @@ const mongoose = require('../db/connection')
 const expenseSchema = new mongoose.Schema({
     detail: String,
     amount: Number,
-    dueDate: Date
+    dueDate: Date,
+    user: {
+        ref: "User",
+        type: mongoose.Schema.Types.ObjectId
+    }
 })
 
 const Expense = mongoose.model("Expense",expenseSchema)
