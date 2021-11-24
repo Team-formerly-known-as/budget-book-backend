@@ -3,11 +3,11 @@ const mongoose = require('../db/connection')
 
 
 
-const expenseSchema = new mongoose.Schema({
+const expenseSchema = mongoose.Schema({
     detail: String,
     amount: Number,
     dueDate: Date,
-    user: {
+    users: {
         ref: "User",
         type: mongoose.Schema.Types.ObjectId
     }
