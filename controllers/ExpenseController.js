@@ -11,10 +11,14 @@ router.post("/:userId", (req, res) => {
     User.findById(req.params.userId)
     .populate("expenses")
     .then((user) => {
-      user.expenses.push(newExpense._id);
-      user.save(function (){
-        res.status(200).json(user);
-      });
+      user.expenses.push(newExpense);
+      user.save(function(){
+        res.status(200).json(user)
+      })
+      
+      
+        
+      
       
     });
   });
