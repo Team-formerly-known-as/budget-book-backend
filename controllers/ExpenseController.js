@@ -1,17 +1,28 @@
 const express = require("express")
 const router = express.Router()
 const Expense = require('../models/expense')
+const User = require('../models/user')
 
 
-
-router.post("/",(req,res) =>{
-    console.log('This is my log',req.body)
-    Expense.create(req.body)
-    .then(expense => res.json({
-        status:201,
-        expense: expense
-    }))   
-})
+router.post("/:userId", (req, res) => {
+  console.log("body", req.body);
+  //FIXME: this doesnt include the latest exspense
+  Expense.create(req.body).then((newExpense) => {
+    User.findById(req.params.userId)
+    .populate("expenses")
+    .then((user) => {
+      user.expenses.push(newExpense);
+      user.save(function(){
+        res.status(200).json(user)
+      })
+      
+      
+        
+      
+      
+    });
+  });
+});
 
 
 
