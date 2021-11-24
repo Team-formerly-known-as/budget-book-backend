@@ -26,6 +26,13 @@ app.use('/user', UserController)
 app.use('/expense', ExpenseController)
 
 
-app.listen(PORT, () =>{
-    console.log(`listening in on port: ${PORT}`)
-})
+// app.listen(PORT, () =>{
+//     console.log(`listening in on port: ${PORT}`)
+// })
+
+app.set("port", process.env.PORT || 8080);
+
+app.listen(app.get("port"), () => {
+  console.log(`✅ PORT: ${app.get("port")} 🌟`);
+});
+
