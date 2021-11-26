@@ -38,8 +38,8 @@ router.get('/:id', (req, res) => {
         res.json({
             status: 200,
             user: user
-        }))
-    } 
+        })})
+    
 })
 
 
