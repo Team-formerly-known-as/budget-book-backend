@@ -33,13 +33,11 @@ router.delete("/:id", (req,res) =>{
 
 router.get('/:id', (req, res) => {
     User.findById(req.params.id)
-    .then((user) => {
-        console.log(user)
+    .then((user) => 
         res.json({
             status: 200,
             user: user
-        }))
-    } 
+        })) 
 })
 
 
