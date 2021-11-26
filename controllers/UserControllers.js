@@ -32,7 +32,7 @@ router.delete("/:id", (req,res) =>{
 })
 
 router.get('/:id', (req, res) => {
-    User.findOne(req.params.id)
+    User.findById(req.params.id)
     .then((user) => res.json({
         status: 200,
         user: user
