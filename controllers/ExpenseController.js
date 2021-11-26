@@ -17,18 +17,18 @@ router.post('/:userId', (req, res) => {
           income = income - user.expenses[x].amount
         }
         user.remainder = income
-        return(user)
+        return user
       })
       .then((user) => {
-          user.save(function () {
-            res.status(200).json(user)
-          })
+        user.save(function () {
+          res.status(200).json(user)
+        })
       })
   })
 })
 
 router.get('/', (req, res) => {
-  Expense.find().then((expense) =>
+  Expense.find({}).then((expense) =>
     res.json({
       status: 200,
       expense: expense,
@@ -36,21 +36,25 @@ router.get('/', (req, res) => {
   )
 })
 
-router.delete("/:expenseId/:ownerId", (req, res) => {
+router.delete('/:id', (req, res) => {
+  Expense.findByIdAndDelete(req.params.id).then(() => res.status(204))
+})
+
+router.delete('/:expenseId/:ownerId', (req, res) => {
   Expense.findByIdAndDelete(req.params.expenseId).then((expense) => {
-    console.log("expense", expense)
     User.findById(req.params.ownerId).then((user) => {
-      console.log("expense1", expense)
-      console.log("user",user)
-      user.save();
-     
-      res.json({
-        status: 200,
-        user: user,
-      });
-    });
-  });
-});
+      user.expenses.pull({ _id: req.params.expenseId })
+        console.log('expense1', expense)
+        console.log('user', user)
+
+        res.json({
+          status: 200,
+          user: user,
+        })
+      })
+    })
+  })
+
 
 router.put('/:id', (req, res) => {
   Expense.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(

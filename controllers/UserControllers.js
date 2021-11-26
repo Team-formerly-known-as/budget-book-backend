@@ -64,7 +64,7 @@ router.put('/:expenseId/:userId', (req, res) => {
             console.log("user",user)
             user.expenses.push(expense._id)
             // expense.user.push(user._id)
-            user.save()
+            // user.save()
             expense.save()
             console.log("user2",user)
             res.json({
@@ -79,6 +79,29 @@ router.put('/:expenseId/:userId', (req, res) => {
         })
     })  
 })
+
+// router.delete("/:expenseId/:ownerId", (req, res) => {
+
+//     console.log("ownerId",req.params.ownerId)
+//      console.log("expense",req.params.expenseId)
+//      console.log("body",req.body)
+ 
+//    Expense.findByIdAndDelete(req.params.expenseId).then((expense) => {
+//      console.log("expense", expense)
+//      User.findById((req.params.userId))
+//      .then((user) => {
+//        console.log("expense1", expense)
+//        console.log("user",user)
+//     //    user.save()
+//        res.json({
+//          status: 200,
+//          user: user,
+//        });
+//      });
+//    });
+//  });
+
+
 
 
 
