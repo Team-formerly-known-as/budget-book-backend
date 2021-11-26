@@ -31,6 +31,14 @@ router.delete("/:id", (req,res) =>{
     .then(() => res.status(204))    
 })
 
+router.get('/:id', (req, res) => {
+    User.findOne(req.params.id)
+    .then((user) => res.json({
+        status: 200,
+        user: user
+    }))
+})
+
 
 // router.post('/:new'),(req, res) => {
 //     User.create(req.body.user).then( user => {
