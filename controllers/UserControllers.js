@@ -66,7 +66,6 @@ router.put('/:expenseId/:userId', (req, res) => {
             console.log("user",user)
             user.expenses.push(expense._id)
             // expense.user.push(user._id)
-
             user.save()
             expense.save()
             console.log("user2",user)
