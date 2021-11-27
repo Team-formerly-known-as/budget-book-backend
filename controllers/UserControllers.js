@@ -47,6 +47,26 @@ router.get("/:id", (req, res) => {
   );
 });
 
+//MAYBE WE USE????
+
+// router.get("/:id", (req, res) => {
+ 
+//     User.findById(req.params.expenseId).populate('expenses').then((user) => {
+//       Expense.findByIdAndUpdate(req.params.userId, req.body, { new: true }).then(
+//         (expense) => {
+//           console.log("user", user);
+//           user.expenses.push(expense._id);
+         
+//           expense.save();
+//           console.log("user2", user);
+//           res.json({
+//             status: 200,
+//             user: user,
+//           });
+//         }
+//       );
+//     });
+//   });
 // router.post('/:new'),(req, res) => {
 //     User.create(req.body.user).then( user => {
 //         Expense.create(req.body.expense).then( expense => {

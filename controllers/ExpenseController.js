@@ -55,7 +55,7 @@ router.delete('/:expenseId/:ownerId', (req, res) => {
 
 
 router.put('/:id', (req, res) => {
-  Expense.findByIdAndUpdate(req.params.id, req.body, { new: true }).populate("expenses").then(
+  Expense.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
     (expense) =>
       res.json({
         status: 200,
