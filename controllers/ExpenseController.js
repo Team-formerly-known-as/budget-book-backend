@@ -44,10 +44,7 @@ router.delete('/:expenseId/:ownerId', (req, res) => {
   Expense.findByIdAndDelete(req.params.expenseId).then((expense) => {
     User.findById(req.params.ownerId).populate('expenses').then((user) => {
       user.expenses.pull({ _id: req.params.expenseId })
-      // .catch(err)
-        console.log('expense1', expense)
-        console.log('user', user)
-
+        user.remainder = expense.amount + user.remainder
         res.json({
           status: 200,
           user: user,
