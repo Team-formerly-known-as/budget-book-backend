@@ -39,7 +39,7 @@ router.delete("/:id", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  User.findById(req.params.id).then((user) =>
+  User.findById(req.params.id).populate("expenses").then((user) =>
     res.json({
       status: 200,
       user: user,
@@ -59,17 +59,14 @@ router.get("/:id", (req, res) => {
 // }
 
 router.put("/:expenseId/:userId", (req, res) => {
-  // console.log("userid",req.params.userId)
-  // console.log("expense",req.params.expenseId)
-  // console.log("body",req.body)
+ 
   Expense.findById(req.params.expenseId).then((expense) => {
     console.log("expense", expense);
     User.findByIdAndUpdate(req.params.userId, req.body, { new: true }).then(
       (user) => {
         console.log("user", user);
         user.expenses.push(expense._id);
-        // expense.user.push(user._id)
-        // user.save()
+       
         expense.save();
         console.log("user2", user);
         res.json({
