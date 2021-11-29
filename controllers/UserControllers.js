@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  User.find().then((user) =>
+  User.find().populate("expenses").then((user) =>
     res.json({
       status: 200,
       user: user,

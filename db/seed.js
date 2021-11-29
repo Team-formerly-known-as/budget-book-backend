@@ -24,7 +24,7 @@ async function addExpense(detail, amount, dueDate,userId){
 async function addUsers(){
   User.deleteMany({}).then(() =>{
     Expense.deleteMany({}).then(() =>{
-      addUser("larry", 150000, 150000).then(async user => {
+      addUser("Larry", 150000, 150000).then(async user => {
         const e1 = await Promise.resolve(addExpense("wifi",50,"12-25-2021",user._id))
         const e2 = await Promise.resolve(addExpense("heat",600,"12-25-2021",user._id)) 
         const e3 = await Promise.resolve(addExpense("car insurance",400,"12-25-2021",user._id)) 
