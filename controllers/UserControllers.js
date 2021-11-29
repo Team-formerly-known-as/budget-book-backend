@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  User.find().then((user) =>
+  User.find().populate("expenses").then((user) =>
     res.json({
       status: 200,
       user: user,
@@ -49,14 +49,12 @@ router.get("/:id", (req, res) => {
 
 router.put("/:expenseId/:userId", (req, res) => {
  
-    Expense.findByIdAndUpdate(req.params.expenseId, req.body, { new: false}).then((expense) => {
+    Expense.findByIdAndUpdate(req.params.expenseId, req.body, { new: true}).then((expense) => {
       console.log("expense", expense);
       User.findByIdAndUpdate(req.params.userId, req.body, { new: true}).populate('expenses').then(
         (user) => {
           console.log("user", user);
-          user.expenses.push(expense);
-          
-         
+          // user.expenses.push(expense);
           expense.save();
           console.log("user2", user);
           res.json({
