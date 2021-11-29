@@ -54,9 +54,7 @@ router.put("/:expenseId/:userId", (req, res) => {
       User.findByIdAndUpdate(req.params.userId, req.body, { new: true}).populate('expenses').then(
         (user) => {
           console.log("user", user);
-          user.expenses.push(expense);
-          
-         
+          // user.expenses.push(expense);
           expense.save();
           console.log("user2", user);
           res.json({
