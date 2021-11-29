@@ -49,7 +49,7 @@ router.get("/:id", (req, res) => {
 
 router.put("/:expenseId/:userId", (req, res) => {
  
-    Expense.findByIdAndUpdate(req.params.expenseId, req.body, { new: false}).then((expense) => {
+    Expense.findByIdAndUpdate(req.params.expenseId, req.body, { new: true}).then((expense) => {
       console.log("expense", expense);
       User.findByIdAndUpdate(req.params.userId, req.body, { new: true}).populate('expenses').then(
         (user) => {
