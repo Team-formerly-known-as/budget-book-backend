@@ -7,31 +7,30 @@ const User = require("../models/user");
 router.post("/", (req, res) => {
   console.log(req.body);
   User.find({ userName: req.body.userName }).then((users) => {
-    if (users.length !== 0 ) {
-      res
-        .status(400)
-        .json({
-          message: `user with username ${req.body.userName} already exists`,
-        });
+    if (users.length !== 0) {
+      res.status(400).json({
+        message: `user with username ${req.body.userName} already exists`,
+      });
     } else {
-      User.create(req.body)
-        .then((user) =>
-          res.json({
-            status: 201,
-            user: user,
-          })
-        );
+      User.create(req.body).then((user) =>
+        res.json({
+          status: 201,
+          user: user,
+        })
+      );
     }
   });
 });
 
 router.get("/", (req, res) => {
-  User.find().populate("expenses").then((user) =>
-    res.json({
-      status: 200,
-      user: user,
-    })
-  );
+  User.find()
+    .populate("expenses")
+    .then((user) =>
+      res.json({
+        status: 200,
+        user: user,
+      })
+    );
 });
 
 router.delete("/:id", (req, res) => {
@@ -39,77 +38,34 @@ router.delete("/:id", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  User.findById(req.params.id).populate("expenses").then((user) =>
-    res.json({
-      status: 200,
-      user: user,
-    })
-  );
+  User.findById(req.params.id)
+    .populate("expenses")
+    .then((user) =>
+      res.json({
+        status: 200,
+        user: user,
+      })
+    );
 });
 
 router.put("/:expenseId/:userId", (req, res) => {
- 
-    Expense.findByIdAndUpdate(req.params.expenseId, req.body, { new: true}).then((expense) => {
+  Expense.findByIdAndUpdate(req.params.expenseId, req.body, { new: true }).then(
+    (expense) => {
       console.log("expense", expense);
-      User.findByIdAndUpdate(req.params.userId, req.body, { new: true}).populate('expenses').then(
-        (user) => {
+      User.findByIdAndUpdate(req.params.userId, req.body, { new: true })
+        .populate("expenses")
+        .then((user) => {
           console.log("user", user);
-          // user.expenses.push(expense);
+
           expense.save();
           console.log("user2", user);
           res.json({
             status: 200,
             user: user,
           });
-        }
-      );
-    });
-  });
-
-// router.put("/:expenseId/:userId", (req, res) => {
- 
-//   Expense.findById(req.params.expenseId).then((expense) => {
-//     console.log("expense", expense);
-//     User.findByIdAndUpdate(req.params.userId, req.body, { new: true}).populate('expenses').then(
-//       (user) => {
-//         console.log("user", user);
-//         user.expenses.push(expense);
-        
-       
-//         expense.save();
-//         console.log("user2", user);
-//         res.json({
-//           status: 200,
-//           user: user,
-//         });
-
-//         //Expense.findById(req.params.expenseId).then( (expense) => {
-//         //User.findByIdAndUpdate((req.params.userId), {$push: {expenses: expense.id}}, {new: true})
-//         //.then((newUser) => { res.json(newUser)
-//       }
-//     );
-//   });
-// });
-
-// router.delete("/:expenseId/:ownerId", (req, res) => {
-
-//     console.log("ownerId",req.params.ownerId)
-//      console.log("expense",req.params.expenseId)
-//      console.log("body",req.body)
-
-//    Expense.findByIdAndDelete(req.params.expenseId).then((expense) => {
-//      console.log("expense", expense)
-//      User.findById((req.params.userId))
-//      .then((user) => {
-//        console.log("expense1", expense)
-//        console.log("user",user)
-//     //    user.save()
-//        res.json({
-//          status: 200,
-//          user: user,
-//        });
-//      });
-//    });
-//  });
+        });
+    }
+  );
+});
 
 module.exports = router;
