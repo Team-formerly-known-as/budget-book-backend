@@ -23,22 +23,25 @@ Our users are people who want to have as much money left over at the end of the 
 ## Time/Priority Matrix (UPDATE WHEN COMPLETE)
 | Component | Priority | Estimated Time | Actual Time |
 | --- | :---: |  :---: | :---: |
-| Backend initial set up | H | 1.5 | n/a |
-| Create Budget.js model | H | 1.5 | n/a |
-| Create User.js model | H | 1.5 | n/a |
-| Create database directory | H | 2 | n/a |
-| Create Controllers directory | H | 2 | n/a |
-| Design site | H | 3 | n/a |
-| React app set up | H | 1.5 | n/a |
-| Create form | H | 1.5 | n/a |
-| Create functionality (math) | H | 2.5 | n/a |
-| Delete expense functionality | H | 2 | n/a |
-| Delete budget functionality | H | 3 | n/a |
-| Responsivness | H | 2 | n/a |
-| Styling | H | 2 | n/a |
-| Backend/Frontend connectivity | H | 3 | n/a |
-| Total | H | 29 | n/a |
+| Backend initial set up | H | 1.5 | 1 |
+| Create Expense.js model | H | 1.5 | 0.5 |
+| Create User.js model | H | 1.5 | 0.5 |
+| Create database directory | H | 2 | 0.25 |
+| Create Controllers directory | H | 2 | 0.25 |
+| Design site | H | 3 | 3 |
+| React app set up | H | 1.5 | 0.5 |
+| Create form | H | 1.5 | 3 |
+| Create functionality (math) | H | 2.5 | 5 |
+| Delete expense functionality | H | 2 | 10 |
+| Edit expense functionality | H | 2 | 7.5 |
+| Delete Budget functionality | L | 3 | n/a |
+| Responsivness | H | 2 | 2 |
+| Styling | H | 2 | 4 |
+| Backend/Frontend connectivity | H | 3 | 5 |
+| Total | H | 29 | 42.5 |
 
 ## Hurdles
 
 One of the major hurdles our team overcame was integrating our user schema with our front-end interface. In particular we struggled to obtain and save the user's expense items and their amount to our backend database. This was resolved by creating useState's for both the item and it's cost and then applying those states to the appropriate keys within the schema. In hindsight it appears obvious but it was difficult to envision beforehand.
+
+Towards the end of the first week we realized we did not delegate tasks as effectively as we could have. We probably could have accomplished more in less time had we done more solo/pair-programming.
